@@ -1,0 +1,35 @@
+<!--component html goes here -->
+<h2 class="text-center mt-16">Recent job listings</h2>
+
+<div class="p-4 border-b-2 w-full hover:bg-gray-100" *ngFor="let job of joblist" >
+
+  <div class="flex flex-row" (click)="toggleCard(job)">
+    <div class="ml-8 p-4 float-left">
+      <a [title]="job.name">
+        {{ job.name }}
+      </a>
+
+      <p class="alata "*ngIf="job.hours">
+        {{ job.hours }}
+      </p>
+    </div>
+    <div class="p-4 w-full left-0 text-center absolute">
+      <p class="text-xl" *ngIf="job.companyName">
+        {{ job.companyName }}
+      </p>
+      <p class="alata self-end" *ngIf="job.location">
+        {{ job.location }}
+      </p>
+    </div>
+  </div>
+  <div [@openClose]="job.shown ? 'true' : 'false'" class="text-center flex flex-col" >
+    <div *ngIf="job.shown">
+    <p class="alata text-left w-full p-4" *ngIf="job.description">
+      <b>Description:</b> {{ job.description }}
+    </p>
+    <button class="justify-end" (click)="Apply()">
+      Apply
+    </button>
+  </div>
+  </div>
+</div>
